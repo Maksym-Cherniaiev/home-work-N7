@@ -6,7 +6,8 @@ class ButtonsStyle {
 	constructor() {
 		this.buttonPianoStyle = "piano-button";
 		this.buttonsContainer = document.querySelector(".piano");
-		this.widthModifier = "pino__line--strech";
+		this.widthModifier = "piano__line-horizontal--strech";
+		this.heightModifier = "piano__line-to-bottom--strech";
 		this.buttonNameArray = ["A", "S", "D", "F", "G", "H", "J", "K"];
 	}
 
@@ -14,7 +15,7 @@ class ButtonsStyle {
 		document.querySelector(".load-buttons__triger").disabled = true;
 	}
 
-	giveButtonName() {
+	showButtonName() {
 		let timeDelay = 200;
 		this.buttonNameArray.forEach(element => {
 			const showButton = setTimeout(() => {
@@ -29,9 +30,9 @@ class ButtonsStyle {
 
 	strechLine() {
 		this.lines = [];
-		this.lines = document.getElementsByClassName("piano__line");
-		this.lines[0].classList.add(`${this.widthModifier}`);
-		this.lines[1].classList.add(`${this.widthModifier}`);
+		this.lines = document.getElementsByClassName("piano__line-horizontal");
+		this.lines[0].classList.add(this.widthModifier);
+		this.lines[1].classList.add(this.widthModifier);
 	}
 
 	createButton(name) {
@@ -73,6 +74,6 @@ class BindAudio extends ButtonsStyle {
 async function createPiano() {
 	const showButton = new ButtonsStyle();
 	const lineStyle = showButton.strechLine();
-	const createButton = showButton.giveButtonName();
+	const createButton = showButton.showButtonName();
 	new BindAudio();
 }

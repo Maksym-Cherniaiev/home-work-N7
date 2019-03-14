@@ -1,3 +1,9 @@
+.line-container {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+}
+
 .piano {
 	display: flex;
 	margin-top: 50px;
@@ -31,13 +37,13 @@
 	background: linear-gradient(rgb(239, 239, 239), rgb(146, 151, 155));
 }
 
-.piano__line {
+.piano__line-horizontal {
 	width: 0;
 	height: 4px;
 	align-self: flex-start;
 }
 
-.pino__line--strech {
+.piano__line-horizontal--strech {
 	width: 100%;
 	transition: width 2s ease-in-out;
 	background: linear-gradient(to right, rgb(239, 239, 239), rgb(144, 144, 194));
