@@ -1,0 +1,30 @@
+.piano {
+	display: flex;
+	margin-top: 100px;
+	justify-content: flex-start;
+	width: 880px;
+}
+
+.piano-button {
+	opacity: 0;
+	visibility: hidden;
+	width: 90px;
+	height: 350px;
+	border: none;
+	border-radius: 10px;
+	outline: none;
+	padding-top: 255px;
+	margin: 0 10px;
+	font-size: 3em;
+	font-weight: 500;
+}
+
+.piano-button--visible {
+	visibility: visible;
+	opacity: 1;
+	transition: opacity 1s ease-in-out;
+}
+
+.piano-button:active {
+	background: linear-gradient(rgb(239, 239, 239), rgb(204, 204, 204));
+}

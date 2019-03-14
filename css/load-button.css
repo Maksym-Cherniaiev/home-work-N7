@@ -1,0 +1,16 @@
+.load-buttons {
+	margin-top: 50px;
+}
+
+.load-buttons__triger {
+	width: 400px;
+    height: 70px;
+    border: none;
+    border-radius: 10px;
+    outline: none;
+    font-size: 2em;
+}
+
+.load-buttons__triger:active {
+	background: linear-gradient(rgb(239, 239, 239), rgb(204, 204, 204));
+}

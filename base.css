@@ -1,0 +1,12 @@
+@import "css/title.css";
+@import "css/load-button.css";
+@import "css/piano.css";
+
+.container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 900px;
+	height: 100%;
+	margin: auto;
+}
