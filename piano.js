@@ -55,12 +55,21 @@ class BindAudio extends ButtonsStyle {
 		super();
 		this.handleButtonClick = this.handleButtonClick.bind(this);
 		this.clickedButton = this.buttonsContainer.addEventListener("click", this.handleButtonClick);
+		this.pressedButton = document.addEventListener("keypress", this.handleKeyButton);
 	}
 
 	handleButtonClick(event) {
 		const target = this.getEventButton(event);
 		if (target.classList.contains(this.buttonPianoStyle)) {
 			let audio = new Audio(`audio-files/${target.id}.mp3`);
+			audio.play();
+		}
+	}
+
+	handleKeyButton(event) {
+		const keyButton = event.key.toUpperCase();
+		if (keyButton) {
+			let audio = new Audio(`audio-files/${keyButton}.mp3`);
 			audio.play();
 		}
 	}
