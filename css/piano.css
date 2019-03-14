@@ -40,5 +40,5 @@
 .pino__line--strech {
 	width: 100%;
 	transition: width 2s ease-in-out;
-	background: linear-gradient(rgb(239, 239, 239), rgb(204, 204, 204));
+	background: linear-gradient(to right, rgb(239, 239, 239), rgb(144, 144, 194));
 }
