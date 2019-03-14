@@ -37,6 +37,7 @@ class ButtonsStyle {
 	createButton(name) {
 		const button = document.createElement("button");
 		button.classList.add(this.buttonPianoStyle);
+		button.id = name;
 		button.textContent = name;
 		this.buttonsContainer.appendChild(button);
 		this.buttonStyleEmerge(button);
@@ -48,8 +49,30 @@ class ButtonsStyle {
 	}
 }
 
+class BindAudio extends ButtonsStyle {
+	constructor() {
+		super();
+		this.handleButtonClick = this.handleButtonClick.bind(this);
+		this.clickedButton = this.buttonsContainer.addEventListener("click", this.handleButtonClick);
+	}
+
+	handleButtonClick(event) {
+		const target = this.getEventButton(event);
+		if (target.classList.contains(this.buttonPianoStyle)) {
+			let audio = new Audio(`audio-files/${target.id}.mp3`);
+			audio.play();
+		}
+	}
+
+	getEventButton(e) {
+  		e = e || window.event;
+  		return e.target || e.srcElement;
+	}
+}
+
 async function createPiano() {
 	const showButton = new ButtonsStyle();
 	const lineStyle = showButton.strechLine();
 	const createButton = showButton.giveButtonName();
+	new BindAudio();
 }

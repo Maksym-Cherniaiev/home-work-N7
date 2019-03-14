@@ -28,7 +28,7 @@
 }
 
 .piano-button:active {
-	background: linear-gradient(rgb(239, 239, 239), rgb(204, 204, 204));
+	background: linear-gradient(rgb(239, 239, 239), rgb(146, 151, 155));
 }
 
 .piano__line {
