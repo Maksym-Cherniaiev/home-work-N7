@@ -4,6 +4,7 @@
 	margin-bottom: 50px;
 	justify-content: flex-start;
 	width: 880px;
+	height: 350px;
 }
 
 .piano-button {
@@ -31,7 +32,13 @@
 }
 
 .piano__line {
-	width: 100%;
+	width: 0;
 	height: 4px;
+	align-self: flex-start;
+}
+
+.pino__line--strech {
+	width: 100%;
+	transition: width 2s ease-in-out;
 	background: linear-gradient(rgb(239, 239, 239), rgb(204, 204, 204));
 }

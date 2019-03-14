@@ -1,12 +1,13 @@
 document.querySelector(".load-buttons__triger").addEventListener("click", createPiano);
 let position = 0;
 
-class Buttons {
+
+class ButtonsStyle {
 	constructor() {
 		this.buttonPianoStyle = "piano-button";
 		this.buttonsContainer = document.querySelector(".piano");
+		this.widthModifier = "pino__line--strech";
 		this.buttonNameArray = ["A", "S", "D", "F", "G", "H", "J", "K"];
-		this.giveButtonName();
 	}
 
 	disableButton() {
@@ -16,11 +17,21 @@ class Buttons {
 	giveButtonName() {
 		let timeDelay = 200;
 		this.buttonNameArray.forEach(element => {
-			setTimeout(() => this.createButton(element), timeDelay);
+			const showButton = setTimeout(() => {
+				this.createButton(element);
+				clearInterval(showButton);
+			}, timeDelay);
 			position++;
 			timeDelay = timeDelay + 200;
 		});
 		this.disableButton();
+	}
+
+	strechLine() {
+		this.lines = [];
+		this.lines = document.getElementsByClassName("piano__line");
+		this.lines[0].classList.add(`${this.widthModifier}`);
+		this.lines[1].classList.add(`${this.widthModifier}`);
 	}
 
 	createButton(name) {
@@ -37,6 +48,8 @@ class Buttons {
 	}
 }
 
-function createPiano() {
-	new Buttons();
+async function createPiano() {
+	const showButton = new ButtonsStyle();
+	const lineStyle = showButton.strechLine();
+	const createButton = showButton.giveButtonName();
 }
