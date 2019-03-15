@@ -48,3 +48,7 @@
 	transition: width 2s ease-in-out;
 	background: linear-gradient(to right, rgb(239, 239, 239), rgb(144, 144, 194));
 }
+
+.piano-button--active {
+	background: linear-gradient(rgb(239, 239, 239), rgb(146, 151, 155));
+}

@@ -50,12 +50,11 @@ class ButtonsStyle {
 	}
 }
 
-class BindAudio extends ButtonsStyle {
+class BindAudioToClick extends ButtonsStyle {
 	constructor() {
 		super();
 		this.handleButtonClick = this.handleButtonClick.bind(this);
 		this.clickedButton = this.buttonsContainer.addEventListener("click", this.handleButtonClick);
-		this.pressedButton = document.addEventListener("keypress", this.handleKeyButton);
 	}
 
 	handleButtonClick(event) {
@@ -66,23 +65,45 @@ class BindAudio extends ButtonsStyle {
 		}
 	}
 
-	handleKeyButton(event) {
-		const keyButton = event.key.toUpperCase();
-		if (keyButton) {
-			let audio = new Audio(`audio-files/${keyButton}.mp3`);
-			audio.play();
-		}
-	}
-
 	getEventButton(e) {
   		e = e || window.event;
   		return e.target || e.srcElement;
 	}
 }
 
+class BindAudioToKeyboard extends ButtonsStyle {
+	constructor() {
+		super();
+		this.handleKeyButton = this.handleKeyButton.bind(this);
+		this.pressedButton = document.addEventListener("keydown", this.handleKeyButton);
+	}
+
+	stringOfKeys(arrayOfKeys) {
+		const reducer = (acc, elem) => acc + elem;
+		const keys = arrayOfKeys.reduce(reducer);
+		return keys;
+	}
+
+	handleKeyButton(event) {
+		const keys = this.stringOfKeys(this.buttonNameArray);
+		const keyButton = event.key.toUpperCase();
+		const keyboardButton = document.getElementById(`${keyButton}`);
+		if (keys.includes(keyButton)) {
+			keyboardButton.classList.add("piano-button--active");
+			let audio = new Audio(`audio-files/${keyButton}.mp3`);
+			audio.play();
+			setTimeout(() => { // Oh well... setTimeout handles it well...
+				const pressedKey = keyboardButton.classList.remove("piano-button--active");
+				clearTimeout(pressedKey);
+			}, 100);
+		}
+	}
+}
+
 async function createPiano() {
-	const showButton = new ButtonsStyle();
+	const showButton = new BindAudioToClick();
 	const lineStyle = showButton.strechLine();
 	const createButton = showButton.showButtonName();
-	new BindAudio();
+	new BindAudioToClick();
+	new BindAudioToKeyboard();
 }
