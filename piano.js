@@ -1,7 +1,3 @@
-document.querySelector(".load-buttons__triger").addEventListener("click", createPiano);
-let position = 0;
-
-
 class ButtonsStyle {
 	constructor() {
 		this.buttonPianoStyle = "piano-button";
@@ -16,6 +12,7 @@ class ButtonsStyle {
 	}
 
 	showButtonName() {
+		let position = 0;
 		let timeDelay = 200;
 		this.buttonNameArray.forEach(element => {
 			const showButton = setTimeout(() => {
@@ -92,8 +89,8 @@ class BindAudioToKeyboard extends ButtonsStyle {
 			keyboardButton.classList.add("piano-button--active");
 			let audio = new Audio(`audio-files/${keyButton}.mp3`);
 			audio.play();
-			setTimeout(() => { // Oh well... setTimeout handles it well...
-				const pressedKey = keyboardButton.classList.remove("piano-button--active");
+			const pressedKey = setTimeout(() => { // Oh well... setTimeout handles it well...
+				keyboardButton.classList.remove("piano-button--active");
 				clearTimeout(pressedKey);
 			}, 100);
 		}
@@ -107,3 +104,5 @@ async function createPiano() {
 	new BindAudioToClick();
 	new BindAudioToKeyboard();
 }
+
+document.querySelector(".load-buttons__triger").addEventListener("click", createPiano);
