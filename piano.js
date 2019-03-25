@@ -71,49 +71,28 @@ class BindAudioToClick extends ButtonsStyle {
 class BindAudioToKeyboard extends ButtonsStyle {
 	constructor() {
 		super();
-		this.noRepeat = false;
 		this.handleKeyButton = this.handleKeyButton.bind(this);
-		this.releaseButton = this.releaseButton.bind(this);
 		this.pressedButton = document.addEventListener("keydown", this.handleKeyButton);
-		this.releasedButton = document.addEventListener("keyup", this.releaseButton);
-	}
-
-	stringOfKeys(arrayOfKeys) {
-		const reducer = (acc, elem) => acc + elem;
-		const keys = arrayOfKeys.reduce(reducer);
-		return keys;
-	}
-
-	releaseButton(event) {
-		this.noRepeat = false;
-		const keyButton = event.key.toUpperCase();
-		const keyboardButton = document.getElementById(`${keyButton}`);
-		if (keyButton === keyboardButton.id && this.noRepeat) return;
-			keyboardButton.classList.remove("piano-button--active");
-			
-		
 	}
 
 	handleKeyButton(event) {
-		const keys = this.stringOfKeys(this.buttonNameArray);
 		const keyButton = event.key.toUpperCase();
 		const keyboardButton = document.getElementById(`${keyButton}`);
-		if (keys.includes(keyButton) && this.noRepeat) return;
-			this.noRepeat = true;
+		console.log(keyboardButton);
+		if (event.repeat) {return};
 			keyboardButton.classList.add("piano-button--active");
 			let audio = new Audio(`audio-files/${keyButton}.mp3`);
 			audio.play();
-			// const pressedKey = setTimeout(() => { // Oh well... setTimeout handles it well...
-			// 	keyboardButton.classList.remove("piano-button--active");
-			// 	clearTimeout(pressedKey);
-			// }, 100);
+			this.pressedButton = document.addEventListener ("keyup", () => {
+				keyboardButton.classList.remove("piano-button--active");
+			});
 	}
 }
 
-async function createPiano() {
+function createPiano() {
 	const showButton = new BindAudioToClick();
-	const lineStyle = showButton.strechLine();
-	const createButton = showButton.showButtonName();
+	showButton.strechLine();
+	showButton.showButtonName();
 	new BindAudioToClick();
 	new BindAudioToKeyboard();
 }
