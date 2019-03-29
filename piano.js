@@ -78,14 +78,13 @@ class BindAudioToKeyboard extends ButtonsStyle {
 	handleKeyButton(event) {
 		const keyButton = event.key.toUpperCase();
 		const keyboardButton = document.getElementById(`${keyButton}`);
-		console.log(keyboardButton);
 		if (event.repeat) {return};
-			keyboardButton.classList.add("piano-button--active");
-			let audio = new Audio(`audio-files/${keyButton}.mp3`);
-			audio.play();
-			this.pressedButton = document.addEventListener ("keyup", () => {
-				keyboardButton.classList.remove("piano-button--active");
-			});
+		keyboardButton.classList.add("piano-button--active");
+		let audio = new Audio(`audio-files/${keyButton}.mp3`);
+		audio.play();
+		this.pressedButton = document.addEventListener ("keyup", () => {
+			keyboardButton.classList.remove("piano-button--active");
+		});
 	}
 }
 
