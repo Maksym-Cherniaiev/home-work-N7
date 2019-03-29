@@ -1,9 +1,8 @@
-class ButtonsStyle {
+class Buttons {
 	constructor() {
 		this.buttonPianoStyle = "piano-button";
 		this.buttonsContainer = document.querySelector(".piano");
 		this.widthModifier = "piano__line-horizontal--strech";
-		this.heightModifier = "piano__line-to-bottom--strech";
 		this.buttonNameArray = ["A", "S", "D", "F", "G", "H", "J", "K"];
 	}
 
@@ -47,7 +46,7 @@ class ButtonsStyle {
 	}
 }
 
-class BindAudioToClick extends ButtonsStyle {
+class CallFromClick extends Buttons {
 	constructor() {
 		super();
 		this.handleButtonClick = this.handleButtonClick.bind(this);
@@ -68,7 +67,7 @@ class BindAudioToClick extends ButtonsStyle {
 	}
 }
 
-class BindAudioToKeyboard extends ButtonsStyle {
+class CallFromKeyboard extends Buttons {
 	constructor() {
 		super();
 		this.handleKeyButton = this.handleKeyButton.bind(this);
@@ -89,11 +88,11 @@ class BindAudioToKeyboard extends ButtonsStyle {
 }
 
 function createPiano() {
-	const showButton = new BindAudioToClick();
+	const showButton = new Buttons();
 	showButton.strechLine();
 	showButton.showButtonName();
-	new BindAudioToClick();
-	new BindAudioToKeyboard();
+	new CallFromClick();
+	new CallFromKeyboard();
 }
 
 document.querySelector(".load-buttons__triger").addEventListener("click", createPiano);
