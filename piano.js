@@ -75,11 +75,11 @@ class CallFromKeyboard extends Buttons {
 	}
 
 	handleKeyButton(event) {
-		const keyButton = event.key.toUpperCase();
-		const keyboardButton = document.getElementById(`${keyButton}`);
+		const char = String.fromCharCode(event.keyCode);
+		const keyboardButton = document.getElementById(`${char}`);
 		if (event.repeat) {return};
 		keyboardButton.classList.add("piano-button--active");
-		let audio = new Audio(`audio-files/${keyButton}.mp3`);
+		let audio = new Audio(`audio-files/${char}.mp3`);
 		audio.play();
 		this.pressedButton = document.addEventListener ("keyup", () => {
 			keyboardButton.classList.remove("piano-button--active");
